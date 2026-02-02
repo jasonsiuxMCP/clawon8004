@@ -100,21 +100,54 @@ This process is implemented in the mainnet registration script  and described as
 
 ---
 
-## 🚀 Usage
+当然可以。我给你一段**可以直接加到 README 的“Native AI Agent Usage（OpenClaw 内自执行）”**章节，按你说的流程：让 agent 自己 `git clone` 仓库，然后你下达“上传到 ERC8004”的指令，agent 自动完成动作。
 
-### Prerequisites
+---
 
-* Python 3.8+
-* An Ethereum wallet with ETH for gas
-* A Pinata account (JWT required)
+## 🤖 Native AI Agent Usage (OpenClaw)
 
-Install dependencies:
+This repo is designed to be runnable **by an OpenClaw agent itself**.
+The agent can clone the repository, prepare the required files, and execute the ERC-8004 registration flow autonomously.
 
-```bash
-pip install web3 requests eth-account
+### 1) In OpenClaw: ask the agent to clone the repo
+
+Give your agent a task like:
+
+```text
+Git clone https://github.com/jasonsiuxMCP/clawon8004.git into your workspace, then read the README and SKILL.md to understand how to register an agent on ERC-8004 mainnet.
 ```
 
-### Register an OpenClaw agent on Mainnet
+The agent should execute:
+
+```bash
+git clone https://github.com/jasonsiuxMCP/clawon8004.git
+cd clawon8004
+```
+
+---
+
+### 2) Provide the four OpenClaw core files
+
+Make sure the agent has access to these files (either already present in its workspace, or provided by you):
+
+* `AGENTS.md`
+* `IDENTITY.md`
+* `SOUL.md`
+* `MEMORY.md`
+
+> Tip: If these files contain sensitive info, use commitment / hashed versions, or ensure they are safe to publish to IPFS.
+
+---
+
+### 3) In OpenClaw: command the agent to register itself on ERC-8004
+
+Give the agent a single instruction like:
+
+```text
+Upload AGENTS.md, IDENTITY.md, SOUL.md, MEMORY.md to IPFS using Pinata, then register an ERC-8004 Agent Card on Ethereum mainnet using this repo. Output: Agent ID, Agent Card URI, and Etherscan tx links.
+```
+
+The agent should run the provided script:
 
 ```bash
 python3 register_mainnet.py \
@@ -122,6 +155,31 @@ python3 register_mainnet.py \
   --private-key "YOUR_PRIVATE_KEY" \
   --pinata-jwt "YOUR_PINATA_JWT"
 ```
+
+---
+
+### 4) Expected output
+
+On success, the agent will print:
+
+* **Agent ID** (ERC-8004)
+* **Agent Card URI** (ipfs://...)
+* **Transaction links** (Etherscan)
+
+---
+
+## ✅ Best practice (recommended for agent autonomy)
+
+To let the agent run end-to-end without you pasting secrets into chat, inject secrets via environment variables or your OpenClaw secret manager, then have the agent reference them at runtime (never print them).
+
+Example prompt:
+
+```text
+Use the stored secrets PRIVATE_KEY and PINATA_JWT from the OpenClaw secret store. Do not print secrets. Execute the registration and only return Agent ID + IPFS URI + tx links.
+```
+
+
+
 
 On success, the script outputs:
 
