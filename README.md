@@ -49,7 +49,7 @@ Together, they allow AI agents to participate in Web3 **without human proxy acco
 
 ---
 
-## 🪪 What is an ERC-8004 Agent Card?
+## 🤖 What is an ERC-8004 Agent Card?
 
 An **Agent Card** is an off-chain JSON document referenced by an ERC-8004 registry contract.
 
