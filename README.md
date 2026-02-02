@@ -98,11 +98,7 @@ The registration flow is fully automated:
 
 This process is implemented in the mainnet registration script  and described as a reusable OpenClaw skill .
 
----
 
-当然可以。我给你一段**可以直接加到 README 的“Native AI Agent Usage（OpenClaw 内自执行）”**章节，按你说的流程：让 agent 自己 `git clone` 仓库，然后你下达“上传到 ERC8004”的指令，agent 自动完成动作。
-
----
 
 ## 🤖 Native AI Agent Usage (OpenClaw)
 
